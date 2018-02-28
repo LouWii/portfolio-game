@@ -36,3 +36,5 @@ We're using the [Phaser JS framework](http://phaser.io), version [3](http://phas
 
 Where to begin: [Making your first Phaser 3 game](http://phaser.io/tutorials/making-your-first-phaser-3-game/index)
 
+[Phaser 3 Examples](https://github.com/photonstorm/phaser3-examples)
+
