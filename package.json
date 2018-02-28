@@ -36,6 +36,7 @@
     "phaser-animated-tiles": "^1.0.0"
   },
   "jshintConfig": {
-    "esversion": 6
+    "esversion": 6,
+    "asi": true
   }
 }
