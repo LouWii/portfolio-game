@@ -63,7 +63,8 @@ class BootScene extends Phaser.Scene {
         if (__DEV__) {
             console.log("BOOTED");
         }
-        this.scene.start('TitleScene');
+        // this.scene.start('TitleScene');
+        this.scene.start('GameScene');
     }
 }
 

@@ -2,7 +2,7 @@ import 'phaser';
 import BootScene from './BootScene';
 import MarioBrosScene from './MarioBrosScene';
 import TitleScene from './TitleScene';
-
+import GameScene from './GameScene';
 
 let config = {
     type: Phaser.WEBGL,
@@ -19,6 +19,7 @@ let config = {
     },
     scene: [
         BootScene,
+        GameScene,
         TitleScene,
         MarioBrosScene,
     ]
