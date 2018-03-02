@@ -33,6 +33,8 @@ export default class GameScene extends Phaser.Scene {
 
         var cursors = this.input.keyboard.createCursorKeys();
 
+        // Force camera to not go above the map
+        this.cameras.main.setBounds(0, 0, this.map.widthInPixels, this.map.heightInPixels)
         var controlConfig = {
             camera: this.cameras.main,
             left: cursors.left,
