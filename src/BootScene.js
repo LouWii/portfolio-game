@@ -41,8 +41,12 @@ class BootScene extends Phaser.Scene {
         this.load.bitmapFont('font', 'assets/fonts/font.png', 'assets/fonts/font.fnt');
 
         this.load.tilemapTiledJSON('map2', 'assets/tilemaps/portfolio-map.json')
-        this.load.spritesheet('groundTiles', 'assets/images/leafy_ground_sprite-32.png', { frameWidth: 32, frameHeight: 32 });
-    
+        // 2 Ways of loading the image/sprite used in our Map
+        // 1. Load as spritesheet, give it a name, give details about sprite sizes
+        // this.load.spritesheet('leafy_ground_sprite-32', 'assets/images/leafy_ground_sprite-32.png', { frameWidth: 32, frameHeight: 32 })
+        // Or 2. Load it as an image with a name
+        this.load.image('leafy_ground_sprite-32', 'assets/images/leafy_ground_sprite-32.png')
+
         // Load plugin for animated tiles. This is just a first build of an upcoming plugin.
         // It's not optimized and lack features. The source code will be released when an
         // official first version is released.
@@ -66,8 +70,8 @@ class BootScene extends Phaser.Scene {
             console.log("BOOTED");
         }
         // this.scene.start('MarioBrosScene');
-        this.scene.start('TitleScene');
-        // this.scene.start('GameScene');
+        // this.scene.start('TitleScene');
+        this.scene.start('GameScene');
     }
 }
 
