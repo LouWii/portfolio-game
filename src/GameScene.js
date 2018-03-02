@@ -38,9 +38,16 @@ export default class GameScene extends Phaser.Scene {
         this.physics.world.bounds.width = this.groundLayer.width
 
         // Player setup
-        this.player = this.physics.add.sprite(100, 50, 'louwii')
-        this.player.setBounce(0.2)
-        this.player.setCollideWorldBounds(true)
+        // this.player = this.physics.add.sprite(100, 50, 'louwii')
+        // this.player.setBounce(0.2)
+        // this.player.setCollideWorldBounds(true)
+
+        this.player = new Louwii({
+            scene: this,
+            key: 'louwii',
+            x: 100, 
+            y: 50
+        })
 
         this.anims.create({
             key: 'left',
@@ -124,32 +131,7 @@ export default class GameScene extends Phaser.Scene {
         // For the camera
         // this.controls.update(delta)
 
-        this.physics.collide(this.player, this.groundLayer)
-
-        // For the player
-        if (this.cursors.left.isDown)
-        {
-            this.player.setVelocityX(-160);
-
-            this.player.anims.play('left', true)
-        }
-        else if (this.cursors.right.isDown)
-        {
-            this.player.setVelocityX(160);
-
-            this.player.anims.play('right', true)
-        }
-        else
-        {
-            this.player.setVelocityX(0);
-
-            this.player.anims.play('turn')
-        }
-
-        if (this.cursors.up.isDown && this.player.body.blocked.down)
-        {
-            this.player.setVelocityY(-330)
-        }
+        this.player.update(this.cursors, time, delta)
     }
 
     drawDebug()
