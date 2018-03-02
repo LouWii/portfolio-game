@@ -47,6 +47,14 @@
              "1":
                 {
                  "collides":true
+                },
+             "2":
+                {
+                 "collides":true
+                },
+             "4":
+                {
+                 "collides":true
                 }
             },
          "tilepropertytypes":
@@ -56,6 +64,14 @@
                  "collides":"bool"
                 },
              "1":
+                {
+                 "collides":"bool"
+                },
+             "2":
+                {
+                 "collides":"bool"
+                },
+             "4":
                 {
                  "collides":"bool"
                 }
