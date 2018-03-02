@@ -17,12 +17,10 @@
  "orientation":"orthogonal",
  "properties":
     {
-     "collides":"true",
      "mapProp":"123"
     },
  "propertytypes":
     {
-     "collides":"string",
      "mapProp":"string"
     },
  "renderorder":"right-down",
@@ -40,6 +38,28 @@
          "spacing":0,
          "tilecount":6,
          "tileheight":32,
+         "tileproperties":
+            {
+             "0":
+                {
+                 "collides":true
+                },
+             "1":
+                {
+                 "collides":true
+                }
+            },
+         "tilepropertytypes":
+            {
+             "0":
+                {
+                 "collides":"bool"
+                },
+             "1":
+                {
+                 "collides":"bool"
+                }
+            },
          "tilewidth":32
         }],
  "tilewidth":32,
