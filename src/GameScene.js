@@ -25,19 +25,31 @@ export default class GameScene extends Phaser.Scene {
         // this.tileset = this.map.addTilesetImage('leafy_ground_sprite-32', 'groundTiles')
 
         // Create a layer, first name is layer name in the map (as in Tiled), second is our tileset created before
-        this.groundLayer = this.map.createStaticLayer('Tile Layer', this.tileset);
+        this.groundLayer = this.map.createStaticLayer('Tile Layer', this.tileset)
         // this.groundLayer.setCollisionByProperty({ collide: true });
 
         // Probably not the correct way of doing this:
-        // this.physics.world.bounds.width = this.groundLayer.width;
+        this.physics.world.bounds.width = this.groundLayer.width
 
-        // this.map = this.add.tilemap('map-coins');
-        // var tiles = this.map.addTilesetImage('ground_1x1');
-        // var layer = this.map.createStaticLayer('Tile Layer', tiles);
+        var cursors = this.input.keyboard.createCursorKeys();
+
+        var controlConfig = {
+            camera: this.cameras.main,
+            left: cursors.left,
+            right: cursors.right,
+            up: cursors.up,
+            down: cursors.down,
+            acceleration: 0.06,
+            // drag: 0.0005,
+            drag: 0.0015,
+            maxSpeed: 0.7
+        }
+
+        this.controls = new Phaser.Cameras.Controls.Smoothed(controlConfig)
     }
 
     update (time, delta)
     {
-        // this.controls.update(delta);
+        this.controls.update(delta)
     }
 }
