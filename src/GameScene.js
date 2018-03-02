@@ -119,4 +119,23 @@ export default class GameScene extends Phaser.Scene {
             this.player.setVelocityY(-330)
         }
     }
+
+    drawDebug()
+    {
+        this.debugGraphics.clear()
+
+        if (this.showDebug)
+        {
+            if (__DEV__){
+                console.log('drawing debug')
+            }
+            // Pass in null for any of the style options to disable drawing that component
+            this.map.renderDebug(this.debugGraphics, {
+                tileColor: null, // Non-colliding tiles
+                collidingTileColor: new Phaser.Display.Color(243, 134, 48, 200), // Colliding tiles
+                faceColor: new Phaser.Display.Color(40, 39, 37, 255) // Colliding face edges
+            });
+        }
+    }
+
 }
