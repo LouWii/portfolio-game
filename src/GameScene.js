@@ -28,7 +28,11 @@ export default class GameScene extends Phaser.Scene {
 
         // Create a layer, first name is layer name in the map (as in Tiled), second is our tileset created before
         this.groundLayer = this.map.createStaticLayer('Tile Layer', this.tileset)
-        this.groundLayer.setCollisionByProperty({ collide: true });
+        this.groundLayer.setCollisionByProperty({ collides: true });
+
+        // This only works for impact physics
+        // this.physics.world.setCollisionMapFromTilemapLayer(this.groundLayer, { defaultCollidingSlope: 1 })
+        
 
         // Probably not the correct way of doing this:
         this.physics.world.bounds.width = this.groundLayer.width
@@ -101,6 +105,8 @@ export default class GameScene extends Phaser.Scene {
     {
         // For the camera
         // this.controls.update(delta)
+
+        this.physics.collide(this.player, this.groundLayer)
 
         // For the player
         if (this.cursors.left.isDown)
