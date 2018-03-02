@@ -50,9 +50,27 @@ export default class GameScene extends Phaser.Scene {
         })
 
         this.anims.create({
-            key: 'turn',
+            key: 'stand-left',
             frames: [ { key: 'louwii', frame: 4 } ],
             frameRate: 20
+        })
+
+        this.anims.create({
+            key: 'stand-right',
+            frames: [ { key: 'louwii', frame: 5 } ],
+            frameRate: 20
+        })
+
+        this.anims.create({
+            key: 'jumping-left',
+            frames: [ { key: 'louwii', frame: 10 } ],
+            frameRate: 10
+        })
+
+        this.anims.create({
+            key: 'jumping-right',
+            frames: [ { key: 'louwii', frame: 11 } ],
+            frameRate: 10
         })
 
         this.anims.create({
