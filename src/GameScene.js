@@ -1,3 +1,5 @@
+import Louwii from './sprites/Louwii'
+
 export default class GameScene extends Phaser.Scene {
     constructor(test) {
         super({
@@ -35,6 +37,26 @@ export default class GameScene extends Phaser.Scene {
         this.player = this.physics.add.sprite(100, 50, 'louwii')
         this.player.setBounce(0.2)
         this.player.setCollideWorldBounds(true)
+
+        this.anims.create({
+            key: 'left',
+            frames: this.anims.generateFrameNumbers('louwii', { start: 0, end: 3 }),
+            frameRate: 10,
+            repeat: -1
+        })
+
+        this.anims.create({
+            key: 'turn',
+            frames: [ { key: 'louwii', frame: 4 } ],
+            frameRate: 20
+        })
+
+        this.anims.create({
+            key: 'right',
+            frames: this.anims.generateFrameNumbers('louwii', { start: 6, end: 9 }),
+            frameRate: 10,
+            repeat: -1
+        })
 
         // Not sure what that does, but it doesn't work
         this.physics.add.collider(this.player, this.groundLayer)
@@ -77,24 +99,24 @@ export default class GameScene extends Phaser.Scene {
         {
             this.player.setVelocityX(-160);
 
-            // this.player.anims.play('left', true);
+            this.player.anims.play('left', true)
         }
         else if (this.cursors.right.isDown)
         {
             this.player.setVelocityX(160);
 
-            // this.player.anims.play('right', true);
+            this.player.anims.play('right', true)
         }
         else
         {
             this.player.setVelocityX(0);
 
-            // this.player.anims.play('turn');
+            this.player.anims.play('turn')
         }
 
         if (this.cursors.up.isDown && this.player.body.touching.down)
         {
-            this.player.setVelocityY(-330);
+            this.player.setVelocityY(-330)
         }
     }
 }
