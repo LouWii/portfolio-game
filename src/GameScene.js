@@ -79,6 +79,14 @@ export default class GameScene extends Phaser.Scene {
             maxSpeed: 0.7
         }
 
+        this.debugGraphics = this.add.graphics()
+        this.showDebug = false
+        const _this = this
+        this.input.keyboard.on('keydown_C', function (event) {
+            _this.showDebug = !_this.showDebug
+            _this.drawDebug()
+        });
+
         // Make camera follow player
         this.cameras.main.startFollow(this.player)
 
