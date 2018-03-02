@@ -26,32 +26,75 @@ export default class GameScene extends Phaser.Scene {
 
         // Create a layer, first name is layer name in the map (as in Tiled), second is our tileset created before
         this.groundLayer = this.map.createStaticLayer('Tile Layer', this.tileset)
-        // this.groundLayer.setCollisionByProperty({ collide: true });
+        this.groundLayer.setCollisionByProperty({ collide: true });
 
         // Probably not the correct way of doing this:
         this.physics.world.bounds.width = this.groundLayer.width
 
-        var cursors = this.input.keyboard.createCursorKeys();
+        // Player setup
+        this.player = this.physics.add.sprite(100, 50, 'louwii')
+        this.player.setBounce(0.2)
+        this.player.setCollideWorldBounds(true)
 
-        // Force camera to not go above the map
-        this.cameras.main.setBounds(0, 0, this.map.widthInPixels, this.map.heightInPixels)
+        // Not sure what that does, but it doesn't work
+        this.physics.add.collider(this.player, this.groundLayer)
+
+        // Not sure what that does, but it doesn't work
+        this.physics.world.enable(this.player)
+
+        // Input/controls setup
+        this.cursors = this.input.keyboard.createCursorKeys()
+
         var controlConfig = {
             camera: this.cameras.main,
-            left: cursors.left,
-            right: cursors.right,
-            up: cursors.up,
-            down: cursors.down,
+            left: this.cursors.left,
+            right: this.cursors.right,
+            up: this.cursors.up,
+            down: this.cursors.down,
             acceleration: 0.06,
             // drag: 0.0005,
             drag: 0.0015,
             maxSpeed: 0.7
         }
 
-        this.controls = new Phaser.Cameras.Controls.Smoothed(controlConfig)
+        // Make camera follow player
+        this.cameras.main.startFollow(this.player)
+
+        // Force camera to not go above the map
+        // We need that otherwise the camera follow the player and go out of the map
+        this.cameras.main.setBounds(0, 0, this.map.widthInPixels, this.map.heightInPixels)
+        // Make controls control the camera
+        // this.controls = new Phaser.Cameras.Controls.Smoothed(controlConfig)
     }
 
     update (time, delta)
     {
-        this.controls.update(delta)
+        // For the camera
+        // this.controls.update(delta)
+
+        // For the player
+        if (this.cursors.left.isDown)
+        {
+            this.player.setVelocityX(-160);
+
+            // this.player.anims.play('left', true);
+        }
+        else if (this.cursors.right.isDown)
+        {
+            this.player.setVelocityX(160);
+
+            // this.player.anims.play('right', true);
+        }
+        else
+        {
+            this.player.setVelocityX(0);
+
+            // this.player.anims.play('turn');
+        }
+
+        if (this.cursors.up.isDown && this.player.body.touching.down)
+        {
+            this.player.setVelocityY(-330);
+        }
     }
 }
