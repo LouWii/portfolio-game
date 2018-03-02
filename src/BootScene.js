@@ -47,6 +47,9 @@ class BootScene extends Phaser.Scene {
         // Or 2. Load it as an image with a name
         this.load.image('leafy_ground_sprite-32', 'assets/images/leafy_ground_sprite-32.png')
 
+        // Load sprite for main player
+        this.load.spritesheet('louwii', 'assets/images/sprite-megaman.png', { frameWidth: 52, frameHeight: 60 });
+
         // Load plugin for animated tiles. This is just a first build of an upcoming plugin.
         // It's not optimized and lack features. The source code will be released when an
         // official first version is released.
