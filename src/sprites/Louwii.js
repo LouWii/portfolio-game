@@ -12,7 +12,7 @@ export default class Louwii extends Phaser.Physics.Arcade.Sprite {
         // this.body.maxVelocity.x = 200
         // this.body.maxVelocity.y = 500
 
-        this.setBounce(0.2)
+        this.setBounce(0)
         this.setCollideWorldBounds(true)
 
         // State
