@@ -46,6 +46,9 @@ class BootScene extends Phaser.Scene {
         // this.load.spritesheet('leafy_ground_sprite-32', 'assets/images/leafy_ground_sprite-32.png', { frameWidth: 32, frameHeight: 32 })
         // Or 2. Load it as an image with a name
         this.load.image('leafy_ground_sprite-32', 'assets/images/leafy_ground_sprite-32.png')
+        this.load.image('objects-sprites', 'assets/images/objects-sprites.png')
+
+        this.load.image('sky', 'assets/images/sky.png')
 
         // Load sprite for main player
         this.load.spritesheet('louwii', 'assets/images/sprite-megaman.png', { frameWidth: 52, frameHeight: 60 });
