@@ -14,16 +14,7 @@ class BootScene extends Phaser.Scene {
      */
     preload()
     {
-        this.load.image('background-clouds', 'assets/images/clouds.png'); // 16-bit later
-        // Tilemap with a lot of objects and tile-properties tricks
-        this.load.tilemapTiledJSON('map', 'assets/tilemaps/super-mario.json');
-        // I load the tiles as a spritesheet so I can use it for both sprites and tiles
-        this.load.spritesheet('tiles', 'assets/images/super-mario.png', { frameWidth: 16, frameHeight: 16 });
-        // Just for fun:
-        this.load.spritesheet('tiles-16bit', 'assets/images/super-mario-16bit.png', { frameWidth: 16, frameHeight: 16 });
-        // Spritesheets with fixed sizes. Should be replaced with atlas:
-        this.load.spritesheet('mario', 'assets/images/mario-sprites.png', { frameWidth: 16, frameHeight: 32 });
-        this.load.spritesheet('sprites16', 'assets/images/16x16sprites.png', { frameWidth: 16, frameHeight: 16 });
+
         // Beginning of an atlas to replace spritesheets
         this.load.atlas('mario-sprites', 'assets/mario-sprites.png', 'assets/mario-sprites.json');
         // Music to play. Need to cut it for it to loop properly
