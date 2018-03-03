@@ -250,11 +250,7 @@ export default class GameScene extends Phaser.Scene {
 
     collectObject(player, object)
     {
-        setTimeout(function() {
-            object.setVisible(true)
-        }, 5000)
-
-        if (object.visible){
+        if (object.visible) {
             console.log(object)
             let _this = this
             this.schoolGroup.getChildren().forEach(function(child){
@@ -263,15 +259,19 @@ export default class GameScene extends Phaser.Scene {
                 if (child.type === 'Graphics') {
 
                 } else if (child.type === 'Text') {
-                    child.setPosition(object.pixelX, 0)
+                    child.setPosition(object.pixelX, (_this.cameras.main.height - 4*32)/2 )
                 }
             })
+
+            // not sure what that does ?
+            // object.disableBody(true, true)
+            object.setCollision(false) // doesn't do anything
+            object.setVisible(false)
+            setTimeout(function() {
+                object.setVisible(true)
+            }, 5000)
         }
 
-        // not sure what that does ?
-        // object.disableBody(true, true)
-        object.setCollision(false) // doesn't do anything
-        object.setVisible(false)
     }
 
 }
