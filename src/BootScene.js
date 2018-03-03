@@ -47,6 +47,10 @@ class BootScene extends Phaser.Scene {
         // Or 2. Load it as an image with a name
         this.load.image('leafy_ground_sprite-32', 'assets/images/leafy_ground_sprite-32.png')
         this.load.image('objects-sprites', 'assets/images/objects-sprites.png')
+        this.load.image('sprite-code', 'assets/images/sprite-code.png')
+        this.load.image('sprite-cogs', 'assets/images/sprite-cogs.png')
+        this.load.image('sprite-hat', 'assets/images/sprite-hat.png')
+        this.load.image('sprite-heart', 'assets/images/sprite-heart.png')
 
         this.load.image('sky', 'assets/images/sky.png')
 
