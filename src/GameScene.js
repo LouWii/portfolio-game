@@ -179,6 +179,7 @@ export default class GameScene extends Phaser.Scene {
             style: {
                 font: 'bold 25px Arial',
                 fill: 'black',
+                align: 'center',
                 wordWrap: { width: 300 }
             }
         });
@@ -188,12 +189,13 @@ export default class GameScene extends Phaser.Scene {
 
         this.text = this.make.text({
             x: 0,
-            y: 0,
+            y: -600,
             text: 'Performance, Security, Compliance, Evolvability, Maintainability... Producing good code isn\'t easy, I do my best to respect these important principles.',
             origin: { x: 0.5, y: 0.5 },
             style: {
                 font: 'bold 25px Arial',
                 fill: 'black',
+                align: 'center',
                 wordWrap: { width: 300 }
             }
         });
@@ -203,12 +205,13 @@ export default class GameScene extends Phaser.Scene {
 
         this.text = this.make.text({
             x: 0,
-            y: 0,
+            y: -600,
             text: 'I write lines and lines of code for all sorts of web things, in all sort of languages. And I love it ! ',
             origin: { x: 0.5, y: 0.5 },
             style: {
                 font: 'bold 25px Arial',
                 fill: 'black',
+                align: 'center',
                 wordWrap: { width: 300 }
             }
         });
