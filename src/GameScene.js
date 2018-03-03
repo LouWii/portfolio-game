@@ -1,4 +1,5 @@
 import Louwii from './sprites/Louwii'
+import makeAnimations from './helpers/animations';
 
 export default class GameScene extends Phaser.Scene {
     constructor(test) {
@@ -21,6 +22,9 @@ export default class GameScene extends Phaser.Scene {
         this.add.image(400, 300, 'sky')
         this.add.image(1100, 300, 'sky')
         this.add.image(1700, 300, 'sky')
+
+        // Define all sprite animations we'll use
+        makeAnimations(this)
 
         // this.add.image(400, 300, 'background-clouds');
         // this.map = this.make.tilemap({ key: 'map2' });
@@ -78,45 +82,8 @@ export default class GameScene extends Phaser.Scene {
             
         })
 
+        // Making the overlap to the group doesn't work, we must setup overlap on each object (see above)
         // this.physics.add.overlap(this.player, this.objectGroup, this.collectObject, null, this)
-
-        this.anims.create({
-            key: 'left',
-            frames: this.anims.generateFrameNumbers('louwii', { start: 0, end: 3 }),
-            frameRate: 10,
-            repeat: -1
-        })
-
-        this.anims.create({
-            key: 'stand-left',
-            frames: [ { key: 'louwii', frame: 4 } ],
-            frameRate: 20
-        })
-
-        this.anims.create({
-            key: 'stand-right',
-            frames: [ { key: 'louwii', frame: 5 } ],
-            frameRate: 20
-        })
-
-        this.anims.create({
-            key: 'jumping-left',
-            frames: [ { key: 'louwii', frame: 10 } ],
-            frameRate: 10
-        })
-
-        this.anims.create({
-            key: 'jumping-right',
-            frames: [ { key: 'louwii', frame: 11 } ],
-            frameRate: 10
-        })
-
-        this.anims.create({
-            key: 'right',
-            frames: this.anims.generateFrameNumbers('louwii', { start: 6, end: 9 }),
-            frameRate: 10,
-            repeat: -1
-        })
 
         // Not sure what that does, but it doesn't work
         this.physics.add.collider(this.player, this.groundLayer)
