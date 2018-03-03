@@ -31,7 +31,7 @@ class BootScene extends Phaser.Scene {
 
         this.load.bitmapFont('font', 'assets/fonts/font.png', 'assets/fonts/font.fnt');
 
-        this.load.tilemapTiledJSON('map2', 'assets/tilemaps/portfolio-map.json')
+        this.load.tilemapTiledJSON('map', 'assets/tilemaps/portfolio-map.json')
         // 2 Ways of loading the image/sprite used in our Map
         // 1. Load as spritesheet, give it a name, give details about sprite sizes
         // this.load.spritesheet('leafy_ground_sprite-32', 'assets/images/leafy_ground_sprite-32.png', { frameWidth: 32, frameHeight: 32 })
