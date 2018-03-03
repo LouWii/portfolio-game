@@ -11,8 +11,6 @@ export default function makeAnimations(scene) {
         frames: scene.anims.generateFrameNumbers('tiles', { start: 43, end: 43, first: 43 })
     };
 
-
-    
     scene.anims.create(config);
     config = {
         key: 'runSuper',
@@ -23,23 +21,23 @@ export default function makeAnimations(scene) {
     };
     scene.anims.create(config);
     config.key = "run";
-    config.frames = scene.anims.generateFrameNumbers('mario', { start: 17, end: 19 }),
-        scene.anims.create(config);
+    config.frames = scene.anims.generateFrameNumbers('mario', { start: 17, end: 19 })
+    
+    scene.anims.create(config);
     config = {
         key: 'jumpSuper',
         frames: scene.anims.generateFrameNumbers('mario', { start: 4, end: 4 }),
     };
+    
     scene.anims.create(config);
     config.key = "jump";
-    config.frames = scene.anims.generateFrameNumbers('mario', { start: 21, end: 21 }),
-        scene.anims.create(config);
+    config.frames = scene.anims.generateFrameNumbers('mario', { start: 21, end: 21 })
 
-        config.key = "death";
-        config.frames = scene.anims.generateFrameNumbers('mario', { start: 22, end: 22 }),
-            scene.anims.create(config);
-    
+    scene.anims.create(config);
+    config.key = "death";
+    config.frames = scene.anims.generateFrameNumbers('mario', { start: 22, end: 22 })
 
-
+    scene.anims.create(config);
     config = {
         key: 'standSuper',
         frames: scene.anims.generateFrameNumbers('mario', { start: 6, end: 6, first: 6 }),
@@ -47,22 +45,23 @@ export default function makeAnimations(scene) {
     scene.anims.create(config);
     
     config.key = "stand";
-    config.frames = scene.anims.generateFrameNumbers('mario', { start: 23, end: 23 }),
+    config.frames = scene.anims.generateFrameNumbers('mario', { start: 23, end: 23 })
     scene.anims.create(config);
     
     config = {
         key: 'turnSuper',
         frames: scene.anims.generateFrameNumbers('mario', { start: 3, end: 3, first: 3 }),
     };
+
     scene.anims.create(config);
     config.key = "turn";
-    config.frames = scene.anims.generateFrameNumbers('mario', { start: 20, end: 20 }),
-        scene.anims.create(config);
+    config.frames = scene.anims.generateFrameNumbers('mario', { start: 20, end: 20 })
+
+    scene.anims.create(config);
     config.key = "bendSuper";
-    config.frames = [{ key: "mario-sprites", frame: 'mario/bend' }],
-        scene.anims.create(config);
+    config.frames = [{ key: "mario-sprites", frame: 'mario/bend' }]
 
-
+    scene.anims.create(config);
     // Didn't find a good way to create an animation with frame names without a pattern.
     let frames = [];
     (['mario/half', 'mario/stand', 'mario/half', 'mario/standSuper', 'mario/half', 'mario/standSuper']).forEach(
@@ -170,13 +169,12 @@ export default function makeAnimations(scene) {
     };
     scene.anims.create(config);
     config = {
-           key: 'dpad',
+        key: 'dpad',
         frames: [{ frame: 'controller/dpad', key: 'mario-sprites' }],
     };
     scene.anims.create(config);
     config = {
         key: 'button',
-     frames: [{ frame: 'controller/button', key: 'mario-sprites' }],
- };
- scene.anims.create(config);
+        frames: [{ frame: 'controller/button', key: 'mario-sprites' }],
+    };
 }
