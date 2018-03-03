@@ -51,21 +51,6 @@ export default class GameScene extends Phaser.Scene {
 
         // Objects setup
         this.objectGroup = this.add.group()
-        // TODO: issues for using tileset and Object layer, can't seem to load proper graphic part when creating sprite
-        // We can do it that way with Traits Layer Tile as a Tile Layer
-        this.objectsTileset = this.map.addTilesetImage('objects-sprites')
-        this.traitsLayer = this.map.createStaticLayer('Traits Layer Tile', this.objectsTileset)
-        this.physics.add.overlap(this.player, this.traitsLayer)
-        // this.physics.add.overlap(this.player, this.traitsLayer, this.collectObject, null, this)
-        this.traitsLayer.setTileIndexCallback(9, this.collectTileObject, this)
-        this.traitsLayer.setTileIndexCallback(11, this.collectTileObject, this)
-        this.traitsLayer.setTileIndexCallback(12, this.collectTileObject, this)
-        // But Traits Layer is an Object Layer (which makes more sense)
-
-        // This works but not works (issue with the sprite), this is also annoying, not automatic
-        // this.map.createFromObjects('Traits Layer', 9, {key: 'objects-sprites'})
-        // this.map.createFromObjects('Traits Layer', 11, {key: 'objects-sprites'})
-        // this.map.createFromObjects('Traits Layer', 12, {key: 'objects-sprites'})
 
         this.map.getObjectLayer("Traits Layer").objects.forEach((modifier) => {
             let properties, type
