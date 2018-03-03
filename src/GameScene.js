@@ -49,6 +49,47 @@ export default class GameScene extends Phaser.Scene {
             y: 50
         })
 
+        // Objects setup
+        this.objectGroup = this.add.group()
+        // TODO: issues for using tileset and Object layer, can't seem to load proper graphic part when creating sprite
+        // We can do it that way with Traits Layer Tile as a Tile Layer
+        this.objectsTileset = this.map.addTilesetImage('objects-sprites')
+        this.traitsLayer = this.map.createStaticLayer('Traits Layer Tile', this.objectsTileset)
+        this.physics.add.overlap(this.player, this.traitsLayer)
+        // this.physics.add.overlap(this.player, this.traitsLayer, this.collectObject, null, this)
+        this.traitsLayer.setTileIndexCallback(9, this.collectObject, this)
+        this.traitsLayer.setTileIndexCallback(11, this.collectObject, this)
+        this.traitsLayer.setTileIndexCallback(12, this.collectObject, this)
+        // But Traits Layer is an Object Layer (which makes more sense)
+
+        // This works but not works (issue with the sprite)
+        // this.map.createFromObjects('Traits Layer', 9, {key: 'objects-sprites'})
+        // this.map.createFromObjects('Traits Layer', 11, {key: 'objects-sprites'})
+        // this.map.createFromObjects('Traits Layer', 12, {key: 'objects-sprites'})
+
+        this.map.getObjectLayer("Traits Layer").objects.forEach((modifier) => {
+            console.log(modifier)
+            let properties, type
+
+            properties = modifier.properties
+            // if (typeof modifier.gid !== "undefined") {
+                
+            // }
+            // else {
+            //     type = modifier.properties.type;
+            // }
+            // let objectObject = this.physics.add.sprite(modifier.x, modifier.y, 'objects-sprites')
+            // let objectObject = this.add.sprite(modifier.x, modifier.y, 'objects-sprites')
+            // console.log(objectObject)
+
+            // Add Object to group
+            // this.objectGroup.add(objectObject)
+
+            // this.physics.add.overlap(this.player, objectObject, this.collectObject, null, this)
+        })
+
+        // this.physics.add.overlap(this.player, this.objectGroup, this.collectObject, null, this)
+
         this.anims.create({
             key: 'left',
             frames: this.anims.generateFrameNumbers('louwii', { start: 0, end: 3 }),
@@ -150,6 +191,19 @@ export default class GameScene extends Phaser.Scene {
                 faceColor: new Phaser.Display.Color(40, 39, 37, 255) // Colliding face edges
             });
         }
+    }
+
+    collectObject(player, object)
+    {
+        console.log(object)
+        // not sure what that does ?
+        // object.disableBody(true, true)
+        object.setCollision(false) // doesn't do anything
+        object.setVisible(false)
+
+        setTimeout(function() {
+            object.setVisible(true)
+        }, 5000)
     }
 
 }
