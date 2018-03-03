@@ -17,6 +17,11 @@ export default class GameScene extends Phaser.Scene {
 
     create() {
 
+        // Add temporary sky background
+        this.add.image(400, 300, 'sky')
+        this.add.image(1100, 300, 'sky')
+        this.add.image(1700, 300, 'sky')
+
         // this.add.image(400, 300, 'background-clouds');
         // this.map = this.make.tilemap({ key: 'map2' });
         this.map = this.add.tilemap('map2')
