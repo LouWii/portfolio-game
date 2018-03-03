@@ -165,6 +165,58 @@ export default class GameScene extends Phaser.Scene {
         this.cameras.main.setBounds(0, 0, this.map.widthInPixels, this.map.heightInPixels)
         // Make controls control the camera
         // this.controls = new Phaser.Cameras.Controls.Smoothed(controlConfig)
+
+        // Create hidden elements to be displayed in the game
+        // School
+        this.background = this.add.graphics()
+        this.background.fillStyle(0xffffff, 1)
+        this.background.fillRect(0, -600, 256, 256)
+        this.text = this.make.text({
+            x: 0,
+            y: -600,
+            text: 'I have a Master degree in computer sciences and years of web exp. But I\'m still eager to learn more about web technologies to improve myself.',
+            origin: { x: 0.5, y: 0.5 },
+            style: {
+                font: 'bold 25px Arial',
+                fill: 'black',
+                wordWrap: { width: 300 }
+            }
+        });
+        this.schoolGroup = this.add.group()
+        this.schoolGroup.add(this.background)
+        this.schoolGroup.add(this.text)
+
+        this.text = this.make.text({
+            x: 0,
+            y: 0,
+            text: 'Performance, Security, Compliance, Evolvability, Maintainability... Producing good code isn\'t easy, I do my best to respect these important principles.',
+            origin: { x: 0.5, y: 0.5 },
+            style: {
+                font: 'bold 25px Arial',
+                fill: 'black',
+                wordWrap: { width: 300 }
+            }
+        });
+        this.codeGroup = this.add.group()
+        this.codeGroup.add(this.background)
+        this.codeGroup.add(this.text)
+
+        this.text = this.make.text({
+            x: 0,
+            y: 0,
+            text: 'I write lines and lines of code for all sorts of web things, in all sort of languages. And I love it ! ',
+            origin: { x: 0.5, y: 0.5 },
+            style: {
+                font: 'bold 25px Arial',
+                fill: 'black',
+                wordWrap: { width: 300 }
+            }
+        });
+        this.passionGroup = this.add.group()
+        this.passionGroup.add(this.background)
+        this.passionGroup.add(this.text)
+
+        console.log(this.player)
     }
 
     update (time, delta)
@@ -195,15 +247,28 @@ export default class GameScene extends Phaser.Scene {
 
     collectObject(player, object)
     {
-        console.log(object)
+        setTimeout(function() {
+            object.setVisible(true)
+        }, 5000)
+
+        if (object.visible){
+            console.log(object)
+            let _this = this
+            this.schoolGroup.getChildren().forEach(function(child){
+                console.log(child)
+                console.log(_this.cameras.main)
+                if (child.type === 'Graphics') {
+
+                } else if (child.type === 'Text') {
+                    child.setPosition(object.pixelX, 0)
+                }
+            })
+        }
+
         // not sure what that does ?
         // object.disableBody(true, true)
         object.setCollision(false) // doesn't do anything
         object.setVisible(false)
-
-        setTimeout(function() {
-            object.setVisible(true)
-        }, 5000)
     }
 
 }
