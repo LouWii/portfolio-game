@@ -188,9 +188,9 @@ export default class GameScene extends Phaser.Scene {
                 wordWrap: { width: 300 }
             }
         });
-        this.schoolGroup = this.add.group()
-        this.schoolGroup.add(this.background)
-        this.schoolGroup.add(this.text)
+        this.hatGroup = this.add.group()
+        this.hatGroup.add(this.background)
+        this.hatGroup.add(this.text)
 
         this.text = this.make.text({
             x: 0,
@@ -220,9 +220,9 @@ export default class GameScene extends Phaser.Scene {
                 wordWrap: { width: 300 }
             }
         });
-        this.passionGroup = this.add.group()
-        this.passionGroup.add(this.background)
-        this.passionGroup.add(this.text)
+        this.heartGroup = this.add.group()
+        this.heartGroup.add(this.background)
+        this.heartGroup.add(this.text)
 
         console.log(this.player)
     }
@@ -286,6 +286,31 @@ export default class GameScene extends Phaser.Scene {
         object.disableBody()
         object.alpha = 0
         console.log(object)
-        // TODO : Continue here
+        let traitGroup
+        switch (object.name) {
+            case 'iconHat':
+                traitGroup = this.hatGroup
+                break
+            case 'iconHeart':
+                traitGroup = this.heartGroup
+                break
+            case 'iconCode':
+                traitGroup = this.codeGroup
+                break
+            default:
+                console.log('Unknown object '+object.name)
+                console.log(object)
+        }
+
+        if (traitGroup) {
+            let _this = this
+            traitGroup.getChildren().forEach(function(child){
+                if (child.type === 'Graphics') {
+
+                } else if (child.type === 'Text') {
+                    child.setPosition(object.x, (_this.cameras.main.height - 4*32)/2 )
+                }
+            })
+        }
     }
 }
