@@ -131,6 +131,7 @@ export default class GameScene extends Phaser.Scene {
         this.text = this.make.text({
             x: 0,
             y: -600,
+            alpha: 0,
             text: 'I have a Master degree in computer sciences and years of web exp. But I\'m still eager to learn more about web technologies to improve myself.',
             origin: { x: 0.5, y: 0.5 },
             style: {
@@ -147,6 +148,7 @@ export default class GameScene extends Phaser.Scene {
         this.text = this.make.text({
             x: 0,
             y: -600,
+            alpha: 0,
             text: 'Performance, Security, Compliance, Evolvability, Maintainability... Producing good code isn\'t easy, I do my best to respect these important principles.',
             origin: { x: 0.5, y: 0.5 },
             style: {
@@ -163,6 +165,7 @@ export default class GameScene extends Phaser.Scene {
         this.text = this.make.text({
             x: 0,
             y: -600,
+            alpha: 0,
             text: 'I write lines and lines of code for all sorts of web things, in all sort of languages. And I love it ! ',
             origin: { x: 0.5, y: 0.5 },
             style: {
@@ -261,6 +264,14 @@ export default class GameScene extends Phaser.Scene {
 
                 } else if (child.type === 'Text') {
                     child.setPosition(object.x, (_this.cameras.main.height - 4*32)/2 )
+                    _this.tweens.add({
+                        targets: child,
+                        alpha: 1,
+                        ease: 'Sine.easeInOut',
+                        duration: 300,
+                        // delay: i * 50,
+                        repeat: 0
+                    });
                 }
             })
         }
