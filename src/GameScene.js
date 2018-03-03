@@ -53,6 +53,13 @@ export default class GameScene extends Phaser.Scene {
             y: this.map.heightInPixels-(32*2)
         })
 
+        // This makes sure our ground layer and the player are colliding properly
+        this.physics.add.collider(this.player, this.groundLayer)
+
+        // Not sure what that does, it doesn't change anything to add or remove
+        //  maybe because the player is already a physical object ?
+        // this.physics.world.enable(this.player)
+
         // Objects setup
         this.objectGroup = this.add.group()
 
@@ -79,17 +86,10 @@ export default class GameScene extends Phaser.Scene {
                     this.physics.add.overlap(this.player, objectObject, this.collectObject, null, this)
                 }
             }
-            
         })
 
         // Making the overlap to the group doesn't work, we must setup overlap on each object (see above)
         // this.physics.add.overlap(this.player, this.objectGroup, this.collectObject, null, this)
-
-        // Not sure what that does, but it doesn't work
-        this.physics.add.collider(this.player, this.groundLayer)
-
-        // Not sure what that does, but it doesn't work
-        this.physics.world.enable(this.player)
 
         // Input/controls setup
         this.cursors = this.input.keyboard.createCursorKeys()
