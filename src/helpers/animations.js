@@ -177,4 +177,50 @@ export default function makeAnimations(scene) {
         key: 'button',
         frames: [{ frame: 'controller/button', key: 'mario-sprites' }],
     };
+
+    // Portfolio animations
+    let animConfig = {
+        key: 'left',
+        frames: scene.anims.generateFrameNumbers('louwii', { start: 0, end: 3 }),
+        frameRate: 10,
+        repeat: -1
+    }
+    scene.anims.create(animConfig)
+
+    animConfig = {
+        key: 'stand-left',
+        frames: [ { key: 'louwii', frame: 4 } ],
+        frameRate: 20
+    }
+    scene.anims.create(animConfig)
+
+    animConfig = {
+        key: 'stand-right',
+        frames: [ { key: 'louwii', frame: 5 } ],
+        frameRate: 20
+    }
+    scene.anims.create(animConfig)
+
+    animConfig = {
+        key: 'jumping-left',
+        frames: [ { key: 'louwii', frame: 10 } ],
+        frameRate: 10
+    }
+    scene.anims.create(animConfig)
+
+    animConfig = {
+        key: 'jumping-right',
+        frames: [ { key: 'louwii', frame: 11 } ],
+        frameRate: 10
+    }
+    scene.anims.create(animConfig)
+
+    animConfig = {
+        key: 'right',
+        frames: scene.anims.generateFrameNumbers('louwii', { start: 6, end: 9 }),
+        frameRate: 10,
+        repeat: -1
+    }
+    scene.anims.create(animConfig)
+
 }
