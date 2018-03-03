@@ -62,30 +62,35 @@ export default class GameScene extends Phaser.Scene {
         this.traitsLayer.setTileIndexCallback(12, this.collectTileObject, this)
         // But Traits Layer is an Object Layer (which makes more sense)
 
-        // This works but not works (issue with the sprite)
+        // This works but not works (issue with the sprite), this is also annoying, not automatic
         // this.map.createFromObjects('Traits Layer', 9, {key: 'objects-sprites'})
         // this.map.createFromObjects('Traits Layer', 11, {key: 'objects-sprites'})
         // this.map.createFromObjects('Traits Layer', 12, {key: 'objects-sprites'})
 
         this.map.getObjectLayer("Traits Layer").objects.forEach((modifier) => {
-            console.log(modifier)
             let properties, type
 
-            properties = modifier.properties
-            // if (typeof modifier.gid !== "undefined") {
-                
-            // }
-            // else {
-            //     type = modifier.properties.type;
-            // }
-            // let objectObject = this.physics.add.sprite(modifier.x, modifier.y, 'objects-sprites')
-            // let objectObject = this.add.sprite(modifier.x, modifier.y, 'objects-sprites')
-            // console.log(objectObject)
+            if (modifier.properties && modifier.properties.spriteName) {
+                console.log(modifier)
 
-            // Add Object to group
-            // this.objectGroup.add(objectObject)
+                if (modifier.properties.spriteName) {
+                    let objectObject = this.physics.add.sprite( (modifier.x+modifier.width/2), modifier.y, modifier.properties.spriteName)
+                    // Attach data to the sprite so we know what's up when in overlap event method call
+                    objectObject.setName(modifier.name)
+                    // This disables the overlap, we don't want that
+                    // objectObject.body.immovable = true
+                    // This takes care of making that sprite to not move
+                    objectObject.body.moves = false
 
-            // this.physics.add.overlap(this.player, objectObject, this.collectObject, null, this)
+                    // console.log(objectObject)
+
+                    // Add Object to group
+                    this.objectGroup.add(objectObject)
+
+                    this.physics.add.overlap(this.player, objectObject, this.collectObject, null, this)
+                }
+            }
+            
         })
 
         // this.physics.add.overlap(this.player, this.objectGroup, this.collectObject, null, this)
@@ -274,4 +279,13 @@ export default class GameScene extends Phaser.Scene {
 
     }
 
+
+    collectObject(player, object)
+    {
+        // Disable body will disable overlap
+        object.disableBody()
+        object.alpha = 0
+        console.log(object)
+        // TODO : Continue here
+    }
 }
