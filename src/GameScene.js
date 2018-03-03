@@ -28,11 +28,11 @@ export default class GameScene extends Phaser.Scene {
 
         //the first parameter is the tileset name as specified in Tiled, the second is the key to the asset
         // If the names are the same, 2nd param is not needed
-        this.tileset = this.map.addTilesetImage('leafy_ground_sprite-32')
+        this.groundTileset = this.map.addTilesetImage('leafy_ground_sprite-32')
         // this.tileset = this.map.addTilesetImage('leafy_ground_sprite-32', 'groundTiles')
 
         // Create a layer, first name is layer name in the map (as in Tiled), second is our tileset created before
-        this.groundLayer = this.map.createStaticLayer('Tile Layer', this.tileset)
+        this.groundLayer = this.map.createStaticLayer('Tile Layer', this.groundTileset)
         this.groundLayer.setCollisionByProperty({ collides: true });
 
         // This only works for impact physics
