@@ -57,9 +57,9 @@ export default class GameScene extends Phaser.Scene {
         this.traitsLayer = this.map.createStaticLayer('Traits Layer Tile', this.objectsTileset)
         this.physics.add.overlap(this.player, this.traitsLayer)
         // this.physics.add.overlap(this.player, this.traitsLayer, this.collectObject, null, this)
-        this.traitsLayer.setTileIndexCallback(9, this.collectObject, this)
-        this.traitsLayer.setTileIndexCallback(11, this.collectObject, this)
-        this.traitsLayer.setTileIndexCallback(12, this.collectObject, this)
+        this.traitsLayer.setTileIndexCallback(9, this.collectTileObject, this)
+        this.traitsLayer.setTileIndexCallback(11, this.collectTileObject, this)
+        this.traitsLayer.setTileIndexCallback(12, this.collectTileObject, this)
         // But Traits Layer is an Object Layer (which makes more sense)
 
         // This works but not works (issue with the sprite)
@@ -248,7 +248,7 @@ export default class GameScene extends Phaser.Scene {
         }
     }
 
-    collectObject(player, object)
+    collectTileObject(player, object)
     {
         if (object.visible) {
             console.log(object)
