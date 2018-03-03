@@ -37,16 +37,11 @@ export default class GameScene extends Phaser.Scene {
 
         // This only works for impact physics
         // this.physics.world.setCollisionMapFromTilemapLayer(this.groundLayer, { defaultCollidingSlope: 1 })
-        
 
         // Probably not the correct way of doing this:
-        this.physics.world.bounds.width = this.groundLayer.width
+        this.physics.world.bounds.width = this.map.widthInPixels
 
         // Player setup
-        // this.player = this.physics.add.sprite(100, 50, 'louwii')
-        // this.player.setBounce(0.2)
-        // this.player.setCollideWorldBounds(true)
-
         this.player = new Louwii({
             scene: this,
             key: 'louwii',
