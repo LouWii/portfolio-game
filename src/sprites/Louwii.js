@@ -23,7 +23,8 @@ export default class Louwii extends Phaser.Physics.Arcade.Sprite {
 
     update(controls, time, delta) {
 
-        this.scene.physics.collide(this, this.groundLayer)
+        // This line doesn't even seem to be needed
+        // this.scene.physics.collide(this, this.groundLayer)
 
         // console.log(this.body.velocity.y) 
 
