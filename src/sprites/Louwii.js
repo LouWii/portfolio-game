@@ -19,6 +19,7 @@ export default class Louwii extends Phaser.Physics.Arcade.Sprite {
         this.jumping = false
         this.jumped = false
         this.lastDirection = 'right'
+        this.canMove = true
     }
 
     update(controls, time, delta) {
@@ -49,7 +50,7 @@ export default class Louwii extends Phaser.Physics.Arcade.Sprite {
 
         // Animation and movements
         let animDirection = false
-        if (input.left){
+        if (this.canMove && input.left){
             this.lastDirection = 'left'
             animDirection = true
             this.setVelocityX(-160)
@@ -59,7 +60,7 @@ export default class Louwii extends Phaser.Physics.Arcade.Sprite {
             } else {
                 this.anims.play('left', true)
             }
-        } else if (input.right) {
+        } else if (this.canMove && input.right) {
             this.lastDirection = 'right'
             animDirection = true
             this.setVelocityX(160)
@@ -81,7 +82,7 @@ export default class Louwii extends Phaser.Physics.Arcade.Sprite {
             }
         }
 
-        if (input.up && this.body.blocked.down && !this.jumped) {
+        if (this.canMove && input.up && this.body.blocked.down && !this.jumped) {
             this.setVelocityY(-330)
             this.jumping = true
             this.jumped = true
