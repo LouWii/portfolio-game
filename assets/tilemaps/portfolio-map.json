@@ -34,14 +34,14 @@
                  "gid":11,
                  "height":32,
                  "id":1,
-                 "name":"",
+                 "name":"iconHat",
                  "properties":
                     {
-                     "Name":"hatIcon"
+                     "spriteName":"sprite-hat"
                     },
                  "propertytypes":
                     {
-                     "Name":"string"
+                     "spriteName":"string"
                     },
                  "rotation":0,
                  "type":"",
@@ -54,41 +54,41 @@
                  "gid":9,
                  "height":32,
                  "id":4,
-                 "name":"",
+                 "name":"iconCode",
                  "properties":
                     {
-                     "Name":"codeIcon"
+                     "spriteName":"sprite-code"
                     },
                  "propertytypes":
                     {
-                     "Name":"string"
+                     "spriteName":"string"
                     },
                  "rotation":0,
                  "type":"",
                  "visible":true,
                  "width":32,
-                 "x":1119.66666666667,
-                 "y":352.333333333333
+                 "x":1120,
+                 "y":352
                 }, 
                 {
                  "gid":12,
                  "height":32,
                  "id":5,
-                 "name":"",
+                 "name":"iconHeart",
                  "properties":
                     {
-                     "Name":"heartIcon"
+                     "spriteName":"sprite-heart"
                     },
                  "propertytypes":
                     {
-                     "Name":"string"
+                     "spriteName":"string"
                     },
                  "rotation":0,
                  "type":"",
                  "visible":true,
                  "width":32,
-                 "x":1471.66666666667,
-                 "y":352.333333333333
+                 "x":1472,
+                 "y":352
                 }],
          "opacity":1,
          "type":"objectgroup",
