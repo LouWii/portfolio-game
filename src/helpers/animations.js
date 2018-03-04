@@ -180,7 +180,7 @@ export default function makeAnimations(scene) {
 
     // Portfolio animations
     let animConfig = {
-        key: 'left',
+        key: 'player-left',
         frames: scene.anims.generateFrameNumbers('louwii', { start: 0, end: 3 }),
         frameRate: 10,
         repeat: -1
@@ -188,35 +188,35 @@ export default function makeAnimations(scene) {
     scene.anims.create(animConfig)
 
     animConfig = {
-        key: 'stand-left',
+        key: 'player-stand-left',
         frames: [ { key: 'louwii', frame: 4 } ],
         frameRate: 20
     }
     scene.anims.create(animConfig)
 
     animConfig = {
-        key: 'stand-right',
+        key: 'player-stand-right',
         frames: [ { key: 'louwii', frame: 5 } ],
         frameRate: 20
     }
     scene.anims.create(animConfig)
 
     animConfig = {
-        key: 'jumping-left',
+        key: 'player-jumping-left',
         frames: [ { key: 'louwii', frame: 10 } ],
         frameRate: 10
     }
     scene.anims.create(animConfig)
 
     animConfig = {
-        key: 'jumping-right',
+        key: 'player-jumping-right',
         frames: [ { key: 'louwii', frame: 11 } ],
         frameRate: 10
     }
     scene.anims.create(animConfig)
 
     animConfig = {
-        key: 'right',
+        key: 'player-right',
         frames: scene.anims.generateFrameNumbers('louwii', { start: 6, end: 9 }),
         frameRate: 10,
         repeat: -1
@@ -224,8 +224,22 @@ export default function makeAnimations(scene) {
     scene.anims.create(animConfig)
 
     animConfig = {
-        key: 'looking-up',
+        key: 'player-looking-up',
         frames: [ { key: 'louwii', frame: 12 } ],
+        frameRate: 10
+    }
+    scene.anims.create(animConfig)
+
+    animConfig = {
+        key: 'player-winning',
+        frames: [ { key: 'louwii', frame: 13 } ],
+        frameRate: 10
+    }
+    scene.anims.create(animConfig)
+
+    animConfig = {
+        key: 'player-go',
+        frames: [ { key: 'louwii', frame: 14 } ],
         frameRate: 10
     }
     scene.anims.create(animConfig)
