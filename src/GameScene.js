@@ -1,11 +1,11 @@
 import Louwii from './sprites/Louwii'
-import makeAnimations from './helpers/animations';
+import makeAnimations from './helpers/animations'
 
 export default class GameScene extends Phaser.Scene {
     constructor(test) {
         super({
             key: 'GameScene',
-        });
+        })
     }
 
     preload() {
@@ -26,8 +26,8 @@ export default class GameScene extends Phaser.Scene {
         // Define all sprite animations we'll use
         makeAnimations(this)
 
-        // this.add.image(400, 300, 'background-clouds');
-        // this.map = this.make.tilemap({ key: 'map2' });
+        // this.add.image(400, 300, 'background-clouds')
+        // this.map = this.make.tilemap({ key: 'map2' })
         this.map = this.add.tilemap('map')
 
         //the first parameter is the tileset name as specified in Tiled, the second is the key to the asset
@@ -85,7 +85,7 @@ export default class GameScene extends Phaser.Scene {
                         duration: 700,
                         yoyo: true,
                         repeat: -1
-                    });
+                    })
 
                     // console.log(objectObject)
 
@@ -121,7 +121,7 @@ export default class GameScene extends Phaser.Scene {
         this.input.keyboard.on('keydown_C', function (event) {
             _this.showDebug = !_this.showDebug
             _this.drawDebug()
-        });
+        })
 
         // Make camera follow player
         this.cameras.main.startFollow(this.player)
@@ -149,7 +149,7 @@ export default class GameScene extends Phaser.Scene {
                 align: 'center',
                 wordWrap: { width: 300 }
             }
-        });
+        })
         this.hatGroup = this.add.group()
         this.hatGroup.add(this.background)
         this.hatGroup.add(this.text)
@@ -166,7 +166,7 @@ export default class GameScene extends Phaser.Scene {
                 align: 'center',
                 wordWrap: { width: 300 }
             }
-        });
+        })
         this.codeGroup = this.add.group()
         this.codeGroup.add(this.background)
         this.codeGroup.add(this.text)
@@ -183,7 +183,7 @@ export default class GameScene extends Phaser.Scene {
                 align: 'center',
                 wordWrap: { width: 300 }
             }
-        });
+        })
         this.heartGroup = this.add.group()
         this.heartGroup.add(this.background)
         this.heartGroup.add(this.text)
@@ -213,7 +213,7 @@ export default class GameScene extends Phaser.Scene {
                 tileColor: null, // Non-colliding tiles
                 collidingTileColor: new Phaser.Display.Color(243, 134, 48, 200), // Colliding tiles
                 faceColor: new Phaser.Display.Color(40, 39, 37, 255) // Colliding face edges
-            });
+            })
         }
     }
 
@@ -280,7 +280,7 @@ export default class GameScene extends Phaser.Scene {
                         duration: 300,
                         // delay: i * 50,
                         repeat: 0
-                    });
+                    })
                 }
             })
         }
