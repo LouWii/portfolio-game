@@ -17,6 +17,8 @@ export default class GameScene extends Phaser.Scene {
     }
 
     create() {
+        // Because we'll need that a few times later
+        const _this = this
 
         // Add temporary sky background
         this.add.image(400, 300, 'sky')
@@ -52,6 +54,8 @@ export default class GameScene extends Phaser.Scene {
             x: 50, 
             y: this.map.heightInPixels-(32*2)
         })
+        this.player.lookingUp = true
+        this.player.canMove = false
 
         // This makes sure our ground layer and the player are colliding properly
         this.physics.add.collider(this.player, this.groundLayer)
@@ -59,6 +63,51 @@ export default class GameScene extends Phaser.Scene {
         // Not sure what that does, it doesn't change anything to add or remove
         //  maybe because the player is already a physical object ?
         // this.physics.world.enable(this.player)
+
+        // Add intro text
+        this.textIntroBackground = this.add.graphics()
+        this.textIntroBackground.fillStyle(0x000000, 1)
+
+        let textIntro = this.make.text({
+            x: (this.cameras.main.width)/2,
+            y: (this.cameras.main.height- 4*32)/2,
+            // scaleX: 0.5,
+            // scaleY: 0.5,
+            // alpha: 0,
+            text: 'Hi! Welcome to the gam-ish version of my portfolio.\n\nUse the arrow keys to move around, you might find some interesting items',
+            origin: { x: 0.5, y: 0.5 },
+            style: {
+                font: '16px Arial',
+                fill: 'white',
+                align: 'left',
+                wordWrap: { width: ( this.cameras.main.width - 4*32) }
+            }
+        })
+
+        this.textIntroBackground.fillRect(32, 1, textIntro.width+(2*32), textIntro.height+2*32)
+        this.freeze = true
+
+        this.timeBar = this.add.graphics()
+        this.timeBar.fillStyle(0x000000, 1)
+        this.timeBar.fillRect(0, 1, this.cameras.main.width, 2)
+
+        this.tweens.add({
+            targets: this.timeBar,
+            x: (this.cameras.main.width),
+            ease: 'Sine.easeInOut',
+            duration: 4000,
+            repeat: 0,
+            onComplete: function () {_this.timeBar.visible = false}
+        })
+
+        setTimeout(
+            function(){
+                _this.freeze = false
+                _this.player.lookingUp = false
+                _this.player.canMove = true
+            },
+            4000
+        )
 
         // Objects setup
         this.objectGroup = this.add.group()
@@ -117,7 +166,6 @@ export default class GameScene extends Phaser.Scene {
 
         this.debugGraphics = this.add.graphics()
         this.showDebug = false
-        const _this = this
         this.input.keyboard.on('keydown_C', function (event) {
             _this.showDebug = !_this.showDebug
             _this.drawDebug()
