@@ -78,6 +78,15 @@ export default class GameScene extends Phaser.Scene {
                     // This takes care of making that sprite to not move
                     objectObject.body.moves = false
 
+                    this.tweens.add({
+                        targets: objectObject,
+                        y: (modifier.y-5),
+                        ease: 'Sine.easeInOut',
+                        duration: 700,
+                        yoyo: true,
+                        repeat: -1
+                    });
+
                     // console.log(objectObject)
 
                     // Add Object to group
