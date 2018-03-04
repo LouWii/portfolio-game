@@ -22,6 +22,7 @@ export default class Louwii extends Phaser.Physics.Arcade.Sprite {
         this.jumped = false
         this.lastDirection = 'right'
         this.canMove = true
+        this.lookingUp = false
     }
 
     update(controls, time, delta) {
@@ -96,6 +97,10 @@ export default class Louwii extends Phaser.Physics.Arcade.Sprite {
                     this.anims.play('jumping-right')
                 }
             }
+        }
+
+        if (this.lookingUp) {
+            this.anims.play('looking-up')
         }
 
         if (this.jumped && !input.up) {
