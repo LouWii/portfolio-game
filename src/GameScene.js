@@ -135,7 +135,7 @@ export default class GameScene extends Phaser.Scene {
             text: 'I have a Master degree in computer sciences and years of web exp. But I\'m still eager to learn more about web technologies to improve myself.',
             origin: { x: 0.5, y: 0.5 },
             style: {
-                font: 'bold 25px Arial',
+                font: '25px Arial',
                 fill: 'black',
                 align: 'center',
                 wordWrap: { width: 300 }
@@ -152,7 +152,7 @@ export default class GameScene extends Phaser.Scene {
             text: 'Performance, Security, Compliance, Evolvability, Maintainability... Producing good code isn\'t easy, I do my best to respect these important principles.',
             origin: { x: 0.5, y: 0.5 },
             style: {
-                font: 'bold 25px Arial',
+                font: '25px Arial',
                 fill: 'black',
                 align: 'center',
                 wordWrap: { width: 300 }
@@ -169,7 +169,7 @@ export default class GameScene extends Phaser.Scene {
             text: 'I write lines and lines of code for all sorts of web things, in all sort of languages. And I love it ! ',
             origin: { x: 0.5, y: 0.5 },
             style: {
-                font: 'bold 25px Arial',
+                font: '25px Arial',
                 fill: 'black',
                 align: 'center',
                 wordWrap: { width: 300 }
