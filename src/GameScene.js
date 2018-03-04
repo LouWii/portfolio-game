@@ -137,9 +137,11 @@ export default class GameScene extends Phaser.Scene {
         this.background = this.add.graphics()
         this.background.fillStyle(0xffffff, 1)
         this.background.fillRect(0, -600, 256, 256)
-        this.text = this.make.text({
+        let text = this.make.text({
             x: 0,
             y: -600,
+            scaleX: 0.5,
+            scaleY: 0.5,
             alpha: 0,
             text: 'I have a Master degree in computer sciences and years of web exp. But I\'m still eager to learn more about web technologies to improve myself.',
             origin: { x: 0.5, y: 0.5 },
@@ -150,11 +152,14 @@ export default class GameScene extends Phaser.Scene {
                 wordWrap: { width: 300 }
             }
         })
+        text.scaleX = 0.5
+        text.scaleY= 0.5
+        console.log(text)
         this.hatGroup = this.add.group()
         this.hatGroup.add(this.background)
-        this.hatGroup.add(this.text)
+        this.hatGroup.add(text)
 
-        this.text = this.make.text({
+        text = this.make.text({
             x: 0,
             y: -600,
             alpha: 0,
@@ -167,11 +172,13 @@ export default class GameScene extends Phaser.Scene {
                 wordWrap: { width: 300 }
             }
         })
+        text.scaleX = 0.5
+        text.scaleY= 0.5
         this.codeGroup = this.add.group()
         this.codeGroup.add(this.background)
-        this.codeGroup.add(this.text)
+        this.codeGroup.add(text)
 
-        this.text = this.make.text({
+        text = this.make.text({
             x: 0,
             y: -600,
             alpha: 0,
@@ -184,9 +191,11 @@ export default class GameScene extends Phaser.Scene {
                 wordWrap: { width: 300 }
             }
         })
+        text.scaleX = 0.5
+        text.scaleY= 0.5
         this.heartGroup = this.add.group()
         this.heartGroup.add(this.background)
-        this.heartGroup.add(this.text)
+        this.heartGroup.add(text)
 
         console.log(this.player)
     }
@@ -276,6 +285,8 @@ export default class GameScene extends Phaser.Scene {
                     _this.tweens.add({
                         targets: child,
                         alpha: 1,
+                        scaleX: 1,
+                        scaleY: 1,
                         ease: 'Sine.easeInOut',
                         duration: 300,
                         // delay: i * 50,
