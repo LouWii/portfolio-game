@@ -223,4 +223,11 @@ export default function makeAnimations(scene) {
     }
     scene.anims.create(animConfig)
 
+    animConfig = {
+        key: 'looking-up',
+        frames: [ { key: 'louwii', frame: 12 } ],
+        frameRate: 10
+    }
+    scene.anims.create(animConfig)
+
 }
