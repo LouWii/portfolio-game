@@ -9,7 +9,7 @@ let config = {
     parent: 'content',
     width: 400,
     // height: 240,
-    height: 15*32,
+    height: 13*32,
     scaleMode: 0, //Phaser.ScaleManager.EXACT_FIT,
     physics: {
         default: 'arcade',
