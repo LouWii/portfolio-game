@@ -49,7 +49,7 @@ export default class GameScene extends Phaser.Scene {
         this.player = new Louwii({
             scene: this,
             key: 'louwii',
-            x: 150, 
+            x: 50, 
             y: this.map.heightInPixels-(32*2)
         })
 
