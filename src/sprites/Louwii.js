@@ -108,7 +108,7 @@ export default class Louwii extends Phaser.Physics.Arcade.Sprite {
             this.anims.play('player-go')
         }
 
-        if (this.jumped && !input.up) {
+        if (this.jumped && !input.up && !this.jumping) {
             this.jumped = false
         }
     }
