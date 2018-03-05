@@ -195,70 +195,11 @@ export default class GameScene extends Phaser.Scene {
 
         // Create hidden elements to be displayed in the game
         // School
-        this.background = this.add.graphics()
-        this.background.fillStyle(0xffffff, 1)
-        this.background.fillRect(0, -600, 256, 256)
-        let text = this.make.text({
-            x: 0,
-            y: -600,
-            scaleX: 0.5,
-            scaleY: 0.5,
-            alpha: 0,
-            text: 'I have a Master degree in computer sciences and years of web exp. But I\'m still eager to learn more about web technologies to improve myself.',
-            origin: { x: 0.5, y: 0.5 },
-            style: {
-                font: '25px Arial',
-                fill: 'black',
-                align: 'center',
-                wordWrap: { width: 300 }
-            }
-        })
-        text.scaleX = 0.5
-        text.scaleY= 0.5
-        console.log(text)
-        this.hatGroup = this.add.group()
-        this.hatGroup.add(this.background)
-        this.hatGroup.add(text)
+        this.hatGroup = this.buildTraitsTexts('I learned, but I want more', 'I have a Master degree in computer sciences and years of web exp. But I\'m still eager to learn more about web technologies to improve myself.')
 
-        text = this.make.text({
-            x: 0,
-            y: -600,
-            alpha: 0,
-            text: 'Performance, Security, Compliance, Evolvability, Maintainability... Producing good code isn\'t easy, I do my best to respect these important principles.',
-            origin: { x: 0.5, y: 0.5 },
-            style: {
-                font: '25px Arial',
-                fill: 'black',
-                align: 'center',
-                wordWrap: { width: 300 }
-            }
-        })
-        text.scaleX = 0.5
-        text.scaleY= 0.5
-        this.codeGroup = this.add.group()
-        this.codeGroup.add(this.background)
-        this.codeGroup.add(text)
+        this.codeGroup = this.buildTraitsTexts('I take coding seriously', 'Performance, Security, Compliance, Evolvability, Maintainability... Producing good code isn\'t easy, I do my best to respect these important principles.')
 
-        text = this.make.text({
-            x: 0,
-            y: -600,
-            alpha: 0,
-            text: 'I write lines and lines of code for all sorts of web things, in all sort of languages. And I love it ! ',
-            origin: { x: 0.5, y: 0.5 },
-            style: {
-                font: '25px Arial',
-                fill: 'black',
-                align: 'center',
-                wordWrap: { width: 300 }
-            }
-        })
-        text.scaleX = 0.5
-        text.scaleY= 0.5
-        this.heartGroup = this.add.group()
-        this.heartGroup.add(this.background)
-        this.heartGroup.add(text)
-
-        console.log(this.player)
+        this.heartGroup = this.buildTraitsTexts('I\'m Passionate', 'I write lines and lines of code for all sorts of web things, in all sort of languages. And I love it !')
     }
 
     update (time, delta)
@@ -287,30 +228,42 @@ export default class GameScene extends Phaser.Scene {
         }
     }
 
-    collectTileObject(player, object)
+    buildTraitsTexts(titleText, bodyText)
     {
-        if (object.visible) {
-            console.log(object)
-            let _this = this
-            this.schoolGroup.getChildren().forEach(function(child){
-                console.log(child)
-                console.log(_this.cameras.main)
-                if (child.type === 'Graphics') {
+        let image = this.add.image(0, 0, 'sprite-panel')
+        image.alpha = 0
+        let text = this.make.text({
+            x: 0,
+            y: -600,
+            scaleX: 0.5,
+            scaleY: 0.5,
+            alpha: 0,
+            text: bodyText,
+            origin: { x: 0.5, y: 0.5 },
+            style: {
+                font: '16px Arial',
+                fill: 'black',
+                align: 'center',
+                wordWrap: { width: 300 }
+            }
+        })
+        // image.width = text.width + 32
+        // image.height = text.height + 32
+        // Calculate the scale of the image to be properly size for the text
+        // The panel in the image has 24px padding all around in the PNG, we have to account for that
+        let scaleWidth = (text.width + 2*24) / image.width
+        image.setData('fullScaleX', scaleWidth)
+        let scaleHeight = (text.height + 2*24) / image.height
+        image.setData('fullScaleY', scaleHeight)
+        image.scaleX = 0.3
+        image.scaleY = 0.3
+        text.scaleX = 0.5
+        text.scaleY= 0.5
+        let group = this.add.group()
+        group.add(image)
+        group.add(text)
 
-                } else if (child.type === 'Text') {
-                    child.setPosition(object.pixelX, (_this.cameras.main.height - 4*32)/2 )
-                }
-            })
-
-            // not sure what that does ?
-            // object.disableBody(true, true)
-            object.setCollision(false) // doesn't do anything
-            object.setVisible(false)
-            setTimeout(function() {
-                object.setVisible(true)
-            }, 5000)
-        }
-
+        return group
     }
 
 
