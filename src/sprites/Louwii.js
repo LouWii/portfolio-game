@@ -23,6 +23,7 @@ export default class Louwii extends Phaser.Physics.Arcade.Sprite {
         this.lastDirection = 'right'
         this.canMove = true
         this.lookingUp = false
+        this.go = false
     }
 
     update(controls, time, delta) {
@@ -59,9 +60,9 @@ export default class Louwii extends Phaser.Physics.Arcade.Sprite {
             this.setVelocityX(-(this.velocityX))
 
             if (this.jumping) {
-                this.anims.play('jumping-left')
+                this.anims.play('player-jumping-left')
             } else {
-                this.anims.play('left', true)
+                this.anims.play('player-left', true)
             }
         } else if (this.canMove && input.right) {
             this.lastDirection = 'right'
@@ -69,18 +70,18 @@ export default class Louwii extends Phaser.Physics.Arcade.Sprite {
             this.setVelocityX(this.velocityX)
 
             if (this.jumping) {
-                this.anims.play('jumping-right')
+                this.anims.play('player-jumping-right')
             } else {
-                this.anims.play('right', true)
+                this.anims.play('player-right', true)
             }
         } else {
             this.setVelocityX(0)
 
             if (!this.jumping) {
                 if (this.lastDirection === 'left') {
-                    this.anims.play('stand-left')
+                    this.anims.play('player-stand-left')
                 } else {
-                    this.anims.play('stand-right')
+                    this.anims.play('player-stand-right')
                 }
             }
         }
@@ -92,15 +93,19 @@ export default class Louwii extends Phaser.Physics.Arcade.Sprite {
 
             if (!animDirection) {
                 if (this.lastDirection === 'left') {
-                    this.anims.play('jumping-left')
+                    this.anims.play('player-jumping-left')
                 } else {
-                    this.anims.play('jumping-right')
+                    this.anims.play('player-jumping-right')
                 }
             }
         }
 
         if (this.lookingUp) {
-            this.anims.play('looking-up')
+            this.anims.play('player-looking-up')
+        }
+
+        if (this.go) {
+            this.anims.play('player-go')
         }
 
         if (this.jumped && !input.up) {
