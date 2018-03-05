@@ -292,8 +292,19 @@ export default class GameScene extends Phaser.Scene {
         if (traitGroup) {
             let _this = this
             traitGroup.getChildren().forEach(function(child){
-                if (child.type === 'Graphics') {
-
+                console.log(child)
+                if (child.type === 'Image') {
+                    child.setPosition(object.x, (_this.cameras.main.height - 4*32)/2 )
+                    _this.tweens.add({
+                        targets: child,
+                        alpha: 1,
+                        scaleX: child.getData('fullScaleX'),
+                        scaleY: child.getData('fullScaleY'),
+                        ease: 'Sine.easeInOut',
+                        duration: 300,
+                        // delay: i * 50,
+                        repeat: 0
+                    })
                 } else if (child.type === 'Text') {
                     child.setPosition(object.x, (_this.cameras.main.height - 4*32)/2 )
                     _this.tweens.add({
