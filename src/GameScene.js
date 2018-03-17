@@ -269,8 +269,8 @@ export default class GameScene extends Phaser.Scene {
         // Calculate the y placement of traits elements (title, body and background image)
         const titleBodyMargin = 18
         const fullHeight = this.cameras.main.height
-        // Remove 4 tiles from full height, as the 4 bottom tiles are for game objects
-        const contentAreaHeight = fullHeight - (4 * 32)
+        // Remove 4 tiles from full height, as the 5 bottom tiles are for game objects
+        const contentAreaHeight = fullHeight - (5 * 32)
         // The total height of what we have to display, + margin between title and body
         const contentHeight = titleTextComponent.height + titleBodyMargin + bodyTextComponent.height
         // The remaining space above and below the content
@@ -285,6 +285,7 @@ export default class GameScene extends Phaser.Scene {
         image.setData('fullScaleX', scaleWidth)
         let scaleHeight = (contentHeight + 2*24) / image.height
         image.setData('fullScaleY', scaleHeight)
+        image.setData('y', (marginsHeight) + contentHeight/2 )
         image.scaleX = 0.3
         image.scaleY = 0.3
         titleTextComponent.scaleX = 0.5
@@ -356,7 +357,7 @@ export default class GameScene extends Phaser.Scene {
                         })
                         break
                     case 'textBackground':
-                        child.setPosition(object.x, (_this.cameras.main.height - 4*32)/2 )
+                        child.setPosition(object.x, child.getData('y') )
                         _this.tweens.add({
                             targets: child,
                             alpha: 1,
