@@ -231,15 +231,32 @@ export default class GameScene extends Phaser.Scene {
     buildTraitsTexts(titleText, bodyText)
     {
         let image = this.add.image(0, 0, 'sprite-panel')
+        image.setData('name', 'textBackground')
         image.alpha = 0
-        let text = this.make.text({
+        let titleTextComponent = this.make.text({
             x: 0,
             y: -600,
-            scaleX: 0.5,
-            scaleY: 0.5,
+            scaleX: 1,
+            scaleY: 1,
+            alpha:0,
+            text: titleText,
+            origin: { x: 0.5, y: 0 },
+            style: {
+                font: '20px Arial',
+                fill: 'black',
+                align: 'center',
+                wordWrap: { width: 300 }
+            }
+        })
+        titleTextComponent.setData('name', 'titleText')
+        let bodyTextComponent = this.make.text({
+            x: 0,
+            y: -600,
+            scaleX: 1,
+            scaleY: 1,
             alpha: 0,
             text: bodyText,
-            origin: { x: 0.5, y: 0.5 },
+            origin: { x: 0.5, y: 0 },
             style: {
                 font: '16px Arial',
                 fill: 'black',
@@ -247,21 +264,37 @@ export default class GameScene extends Phaser.Scene {
                 wordWrap: { width: 300 }
             }
         })
-        // image.width = text.width + 32
-        // image.height = text.height + 32
+        bodyTextComponent.setData('name', 'bodyText')
+
+        // Calculate the y placement of traits elements (title, body and background image)
+        const titleBodyMargin = 18
+        const fullHeight = this.cameras.main.height
+        // Remove 4 tiles from full height, as the 4 bottom tiles are for game objects
+        const contentAreaHeight = fullHeight - (4 * 32)
+        // The total height of what we have to display, + margin between title and body
+        const contentHeight = titleTextComponent.height + titleBodyMargin + bodyTextComponent.height
+        // The remaining space above and below the content
+        const marginsHeight = (contentAreaHeight - contentHeight) / 2
+
+        titleTextComponent.setData('y', marginsHeight)
+        bodyTextComponent.setData('y', marginsHeight + titleTextComponent.height + titleBodyMargin)
+
         // Calculate the scale of the image to be properly size for the text
         // The panel in the image has 24px padding all around in the PNG, we have to account for that
-        let scaleWidth = (text.width + 2*24) / image.width
+        let scaleWidth = (bodyTextComponent.width + 2*32) / image.width
         image.setData('fullScaleX', scaleWidth)
-        let scaleHeight = (text.height + 2*24) / image.height
+        let scaleHeight = (contentHeight + 2*24) / image.height
         image.setData('fullScaleY', scaleHeight)
         image.scaleX = 0.3
         image.scaleY = 0.3
-        text.scaleX = 0.5
-        text.scaleY= 0.5
+        titleTextComponent.scaleX = 0.5
+        titleTextComponent.scaleY = 0.5
+        bodyTextComponent.scaleX = 0.5
+        bodyTextComponent.scaleY = 0.5
         let group = this.add.group()
         group.add(image)
-        group.add(text)
+        group.add(titleTextComponent)
+        group.add(bodyTextComponent)
 
         return group
     }
@@ -293,30 +326,50 @@ export default class GameScene extends Phaser.Scene {
             let _this = this
             traitGroup.getChildren().forEach(function(child){
                 console.log(child)
-                if (child.type === 'Image') {
-                    child.setPosition(object.x, (_this.cameras.main.height - 4*32)/2 )
-                    _this.tweens.add({
-                        targets: child,
-                        alpha: 1,
-                        scaleX: child.getData('fullScaleX'),
-                        scaleY: child.getData('fullScaleY'),
-                        ease: 'Sine.easeInOut',
-                        duration: 300,
-                        // delay: i * 50,
-                        repeat: 0
-                    })
-                } else if (child.type === 'Text') {
-                    child.setPosition(object.x, (_this.cameras.main.height - 4*32)/2 )
-                    _this.tweens.add({
-                        targets: child,
-                        alpha: 1,
-                        scaleX: 1,
-                        scaleY: 1,
-                        ease: 'Sine.easeInOut',
-                        duration: 300,
-                        // delay: i * 50,
-                        repeat: 0
-                    })
+                switch (child.getData('name')) {
+                    case 'titleText':
+                        child.setPosition(object.x, child.getData('y') )
+                        _this.tweens.add({
+                            targets: child,
+                            alpha: 1,
+                            scaleX: 1,
+                            scaleY: 1,
+                            ease: 'Sine.easeInOut',
+                            duration: 300,
+                            // delay: i * 50,
+                            repeat: 0
+                        })
+                        break
+                    case 'bodyText':
+                        // child.setPosition(object.x, (_this.cameras.main.height - 4*32)/2 )
+                        console.log(child.getData('y'))
+                        child.setPosition(object.x, child.getData('y') )
+                        _this.tweens.add({
+                            targets: child,
+                            alpha: 1,
+                            scaleX: 1,
+                            scaleY: 1,
+                            ease: 'Sine.easeInOut',
+                            duration: 300,
+                            // delay: i * 50,
+                            repeat: 0
+                        })
+                        break
+                    case 'textBackground':
+                        child.setPosition(object.x, (_this.cameras.main.height - 4*32)/2 )
+                        _this.tweens.add({
+                            targets: child,
+                            alpha: 1,
+                            scaleX: child.getData('fullScaleX'),
+                            scaleY: child.getData('fullScaleY'),
+                            ease: 'Sine.easeInOut',
+                            duration: 300,
+                            // delay: i * 50,
+                            repeat: 0
+                        })
+                        break
+                    default:
+
                 }
             })
         }
